@@ -1,0 +1,50 @@
+{% extends 'admin/base_site.html' %}
+{% block content %}
+<h1>THỐNG KÊ THÔNG TIN CÁC KHOÁ HỌC</h1>
+<ul>
+    {% for s in stats %}
+    <li><strong>{{ s.name }}</strong>: {{ s.count }} bài học</li>
+    {% endfor %}
+</ul>
+
+<div style="width:60%">
+  <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    window.onload = function() {
+      const ctx = document.getElementById('myChart');
+
+      datas = [];
+      labels =[];
+
+      {% for s in stats %}
+        datas.push('{{ s.count }}')
+        labels.push('{{ s.name }}')
+      {% endfor %}
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: '# of Votes',
+            data: datas,
+            borderWidth: 1,
+            backgroundColor: ['red','yellow','blue']
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+</script>
+
+{% endblock %}
