@@ -16,13 +16,14 @@ from django.conf.global_settings import AUTH_USER_MODEL
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 MEDIA_ROOT = '%s/courses/static/' % BASE_DIR
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6kk#80-6nx7eyy&u!c+1%uzp$#1rmlg(u3w3oz-2arug-=a_zj'
+SECRET_KEY = 'django-insecure-v(@t(_ynt+1e%c6@67h!9nm7uco(8&nlq(+h!q#do^x3akof4^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,10 +43,15 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'rest_framework',
-    'drf_yasg'
+    'drf_yasg',
+    'oauth2_provider',
 ]
 
-CKEDITOR_UPLOAD_PATH = "images/ckeditor/"
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    )
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,6 +62,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CKEDITOR_UPLOAD_PATH = "images/ckeditors/"
 
 ROOT_URLCONF = 'ecourseapi.urls'
 
@@ -74,12 +82,6 @@ TEMPLATES = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS':
-        'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 6
-}
-
 WSGI_APPLICATION = 'ecourseapi.wsgi.application'
 
 # Database
@@ -94,6 +96,16 @@ DATABASES = {
         'HOST': ''  # mặc định localhost
     }
 }
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config(
+    cloud_name="dxxwcby8l",
+    api_key="792844686918347",
+    api_secret="T8ys_Z9zaKSqmKWa4K1RY6DXUJg"
+)
 
 import pymysql
 
@@ -139,3 +151,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CLIENT_ID = 'i1QXTODd2LbBgEW4nBRlr0GwIRE3mdFMvA7mOyID'
+CLIENT_SECRET = 'sBOkjhBN2lNqAkmwSGeaxkoUasSsb2Znolu1u8cvs4WTzoBmAp1KraT4WBT2tElISGXMZbmNmDn2FzcbJ6qcZxl7ys5iesCjcHoEKzyZK7EdAyIutXRtuPGXQoIACyoi'
