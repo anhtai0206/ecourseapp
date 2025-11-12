@@ -151,6 +151,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-CLIENT_ID = 'i1QXTODd2LbBgEW4nBRlr0GwIRE3mdFMvA7mOyID'
-CLIENT_SECRET = 'sBOkjhBN2lNqAkmwSGeaxkoUasSsb2Znolu1u8cvs4WTzoBmAp1KraT4WBT2tElISGXMZbmNmDn2FzcbJ6qcZxl7ys5iesCjcHoEKzyZK7EdAyIutXRtuPGXQoIACyoi'
